@@ -13,7 +13,7 @@ namespace Bank
 
     public class CheckingAccount : IBankAccount
     {
-        public decimal balance;
+        private decimal balance;
 
         public CheckingAccount(int startingBalance)
         {
@@ -31,15 +31,15 @@ namespace Bank
         public bool DepositMoney(decimal amount)
         {
             balance += amount;
-            return true;    
+            return true;
         }
 
         public bool TransferMoney(IBankAccount otherAccount, decimal amount)
         {
-            decimal actualAmount = amount * 1.10m;
             this.WithDrawMoney(amount);
             otherAccount.DepositMoney(amount);
             return true;
+
         }
 
         public bool WithDrawMoney(decimal amount)
@@ -51,6 +51,7 @@ namespace Bank
 
     public class SavingsAccount : IBankAccount
     {
+
         private decimal balance;
 
         public SavingsAccount(int startingBalance)
@@ -66,6 +67,7 @@ namespace Bank
             }
         }
 
+
         public bool DepositMoney(decimal amount)
         {
             balance += amount;
@@ -74,29 +76,50 @@ namespace Bank
 
         public bool TransferMoney(IBankAccount otherAccount, decimal amount)
         {
-            balance -= amount;
-                return true;
+            var fee = CalculateFee(amount, WithDrawType.Transfer);
+            if (UpdateBalance(amount + fee))
+            {
+                otherAccount.DepositMoney(amount);
+            }
+
+
+            return true;
         }
 
-        public bool WithDrawMoney(decimal amount)
+        private bool UpdateBalance(decimal amount)
         {
-            var fee = CalculateFee(amount, WithDrawType.Transfer);
             if (amount < balance)
             {
-                balance -= (amount * 1.05m);
+                balance -= amount;
                 return true;
             }
+
             return false;
         }
-
-        private object CalculateFee(decimal amount, object transfer)
+        public bool WithDrawMoney(decimal amount)
         {
-            throw new NotImplementedException();
+            var fee = CalculateFee(amount, WithDrawType.Withdrawal);
+            return UpdateBalance(amount + fee);
+        }
+
+        private static decimal CalculateFee(decimal amount, WithDrawType type)
+        {
+
+            switch (type)
+            {
+                case WithDrawType.Transfer:
+                    return amount * .10m;
+                case WithDrawType.Withdrawal:
+                    return amount * .05m;
+                default:
+                    return 0;
+            }
         }
     }
 
-    class WithDrawType
+    public enum WithDrawType
     {
-        public static object Transfer { get; internal set; }
+        Transfer,
+        Withdrawal
     }
 }
