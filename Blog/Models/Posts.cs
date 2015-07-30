@@ -8,10 +8,12 @@ namespace Blog.Models
     public partial class Posts : DbContext
     {
         public Posts()
-            : base("name=Posts")
+            : base("Posts")
         {
-        }
 
+            Database.SetInitializer<Posts>(new CreateDatabaseIfNotExists<Posts>());
+
+        }
         public virtual DbSet<Post> PostDB { get; set; }
     }
 }

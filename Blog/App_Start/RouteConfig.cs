@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blog.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,14 +15,14 @@ namespace Blog
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: "Detail Indexing",
+                name: "Details",
                 url: "Posts/{id}",
                 defaults: new { controller = "Post", action = "Details", id = 0 }
                 );
             routes.MapRoute(
-                name: "Create",
+                name: "stuff",
                 url: "Posts/new",
-                defaults: new { controller = "Posts", action = "Create"}
+                defaults: new { controller = "Post", action = "Create", id = UrlParameter.Optional }
                 );
             routes.MapRoute(
                 name: "Default",

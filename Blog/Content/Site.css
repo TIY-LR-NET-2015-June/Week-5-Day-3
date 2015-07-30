@@ -22,3 +22,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+a {
+    color: darkblue;
+}
+
+.post {
+    background-color: lightgrey;
+    border: medium;
+    border-color: black;
+}

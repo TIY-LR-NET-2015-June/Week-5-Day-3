@@ -24,6 +24,7 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult Create(Post post)
         {
+            posts.PostDB.Attach(post);
             posts.PostDB.Add(post);
             posts.SaveChanges();
             return RedirectToAction("List");
@@ -61,10 +62,10 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult Delete(Post post)
         {
-                posts.PostDB.Attach(post);
-                posts.PostDB.Remove(post);
-                posts.SaveChanges();
-            
+            posts.PostDB.Attach(post);
+            posts.PostDB.Remove(post);
+            posts.SaveChanges();
+
             return RedirectToAction("List");
         }
     }

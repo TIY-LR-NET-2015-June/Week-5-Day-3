@@ -8,7 +8,7 @@ namespace Blog.Models
 {
     public class Post
     {
-        public int ID { get; set; }
+        public int? ID { get; set; }
 
         [Required]
         [StringLength(75)]
