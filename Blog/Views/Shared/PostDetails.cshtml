@@ -1,0 +1,17 @@
+﻿@model Blog.Models.Post
+
+<div class="container">
+    @Html.DisplayNameFor(model => model.Title)
+    @Html.DisplayFor(model => model.Title)
+
+    @Html.DisplayNameFor(model => model.Body)
+    @Html.DisplayFor(model => model.Body)
+
+    @Html.DisplayNameFor(model => model.PublishedOn)
+    @Html.DisplayFor(model => model.PublishedOn)
+    
+    
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Details", "Details", new { id = Model.ID }) |
+    @Html.ActionLink("Delete", "Delete", new { id = Model.ID })
+</div>
