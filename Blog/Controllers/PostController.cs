@@ -13,7 +13,7 @@ namespace Blog.Controllers
 
         public ActionResult Index()
         {
-            return View(posts.PostDB.ToList().OrderBy(p => p.PublishedOn));
+            return View(posts.PostDB.OrderBy(p => p.PublishedOn).ToList());
         }
 
         [HttpGet]
@@ -25,6 +25,7 @@ namespace Blog.Controllers
         public ActionResult Create(Post post)
         {
             posts.PostDB.Add(post);
+            posts.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -38,6 +39,7 @@ namespace Blog.Controllers
         {
             posts.PostDB.Remove(posts.PostDB.Find(post.ID));
             posts.PostDB.Add(post);
+            posts.SaveChanges();
             return RedirectToAction("List");
         }
 
@@ -59,7 +61,10 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult Delete(Post post)
         {
-            posts.PostDB.Remove(post);
+                posts.PostDB.Attach(post);
+                posts.PostDB.Remove(post);
+                posts.SaveChanges();
+            
             return RedirectToAction("List");
         }
     }
