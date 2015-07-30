@@ -18,9 +18,9 @@ namespace Blog.Models
         public string Body { get; set; }
         public DateTime PublishedOn { get; private set; }
 
-        public Post(DateTime _publishedOn)
+        public Post()
         {
-            PublishedOn = _publishedOn;
+            PublishedOn = DateTime.Now;
         }
     }
 }
