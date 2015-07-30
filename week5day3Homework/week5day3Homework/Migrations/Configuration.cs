@@ -26,6 +26,11 @@ namespace week5day3Homework.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.Posts.AddOrUpdate(
+                p => p.Title,
+                new Models.Post { Title = "First Post", Body = "Body of the first post", PublishedOn = DateTime.Now }
+                );
         }
     }
 }
