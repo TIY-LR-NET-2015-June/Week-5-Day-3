@@ -6,9 +6,19 @@ using System.Web.Mvc;
 
 namespace Blog.Controllers
 {
-    public class Posts : Controller
+    public class PostController : Controller
     {
         public ActionResult Index()
+        {
+            return View();
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        public ActionResult Edit()
         {
             return View();
         }
