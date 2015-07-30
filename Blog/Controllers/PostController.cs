@@ -13,7 +13,7 @@ namespace Blog.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(posts.PostDB.ToList().OrderBy(p => p.PublishedOn));
         }
 
         [HttpGet]
@@ -31,7 +31,7 @@ namespace Blog.Controllers
         [HttpGet]
         public ActionResult Edit(int ID)
         {
-            return View();
+            return View(posts.PostDB.Find(ID));
         }
         [HttpPost]
         public ActionResult Edit(Post post)
@@ -43,7 +43,7 @@ namespace Blog.Controllers
 
         public ActionResult List()
         {
-            return View();
+            return View(posts.PostDB.ToList());
         }
 
         public ActionResult Details(int ID)

@@ -185,6 +185,7 @@
     <Content Include="Views\Post\Details.cshtml" />
     <Content Include="Views\Shared\PostDetails.cshtml" />
     <Content Include="Views\Post\Delete.cshtml" />
+    <Content Include="Views\Post\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
