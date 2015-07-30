@@ -184,7 +184,10 @@
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Shared\_EditCreate.cshtml" />
+=======
+>>>>>>> 63765e00b96de4f0f862312891b3752232c57471
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201507292119501_Initial.resx">
