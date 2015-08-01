@@ -9,21 +9,22 @@ using System.Web.Routing;
 namespace Blog
 {
     public class RouteConfig
+
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            routes.MapRoute(
+    name: "stuff",
+    url: "Posts/new",
+    defaults: new { controller = "Post", action = "Create" }
+    );
             routes.MapRoute(
                 name: "Details",
                 url: "Posts/{id}",
                 defaults: new { controller = "Post", action = "Details", id = 0 }
                 );
-            routes.MapRoute(
-                name: "stuff",
-                url: "Posts/new",
-                defaults: new { controller = "Post", action = "Create", id = UrlParameter.Optional }
-                );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

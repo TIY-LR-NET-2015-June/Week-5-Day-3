@@ -24,6 +24,8 @@ namespace Blog.Controllers
         [HttpPost]
         public ActionResult Create(Post post)
         {
+            if (post.ID == null)
+                post.ID = posts.PostDB.Last().ID + 1;
             posts.PostDB.Attach(post);
             posts.PostDB.Add(post);
             posts.SaveChanges();
